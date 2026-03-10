@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task CRUD Application
 
-## Getting Started
+A simple yet powerful Task CRUD application built with **Next.js** and **MongoDB**. No authentication required.
 
-First, run the development server:
+## Features
+
+- ✅ **Create** tasks with title and description
+- ✅ **Read** all tasks from MongoDB
+- ✅ **Update** tasks (title, description, completion status)
+- ✅ **Delete** tasks
+- ✅ Mark tasks as completed/incomplete
+- ✅ Clean and modern UI with Tailwind CSS
+- ✅ MongoDB native driver integration
+
+## Prerequisites
+
+- **Node.js** 18+ installed
+- **MongoDB** running locally on `mongodb://localhost:27017`
+- npm or yarn
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/jviejocodecripto/crud.git
+cd crud
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Configure MongoDB (optional):
+   - Edit `.env.local` if you need to use a different MongoDB URI or database name
+   - Default: `MONGODB_URI=mongodb://localhost:27017` and `MONGODB_DB=crud-db`
+
+## Running the Application
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Building for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+crud/
+├── app/
+│   ├── api/
+│   │   └── tasks/
+│   │       ├── route.ts          # GET & POST endpoints
+│   │       └── [id]/route.ts      # PUT & DELETE endpoints
+│   ├── layout.tsx
+│   ├── page.tsx                  # Main page with CRUD UI
+│   └── globals.css
+├── lib/
+│   └── mongodb.ts                # MongoDB connection helper
+├── .env.local                    # Environment variables
+├── package.json
+└── tsconfig.json
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API Endpoints
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Get all tasks
+```
+GET /api/tasks
+```
 
-## Deploy on Vercel
+### Create a task
+```
+POST /api/tasks
+Content-Type: application/json
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+{
+  "title": "Task Title",
+  "description": "Task Description (optional)"
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Update a task
+```
+PUT /api/tasks/:id
+Content-Type: application/json
+
+{
+  "title": "Updated Title",
+  "description": "Updated Description",
+  "completed": true
+}
+```
+
+### Delete a task
+```
+DELETE /api/tasks/:id
+```
+
+## Technologies Used
+
+- **Next.js** - React framework for production
+- **TypeScript** - Static type checking
+- **MongoDB** - NoSQL database with native driver
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Hooks** - State management
+
+## Repository Links
+
+- **GitHub**: https://github.com/jviejocodecripto/crud
+- **GitLab**: https://gitlab.codecrypto.academy/jviejo/crud
+
+## License
+
+MIT License
